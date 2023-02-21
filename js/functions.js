@@ -25,15 +25,29 @@ isPalindrome('топот');
 
 //Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа
 function getNumber (string) {
-  string = string.replaceAll(' ', '');
   let newNumber = '';
   for (let i = 0; i < string.length; i++) {
-    if (string[i] === Number(string[i])) {
-      newNumber += parseInt(string[i],10);
-      return newNumber;
+    const newSymbol = parseInt(string[i], 10);
+    if (!isNaN(newSymbol)) {
+      newNumber += newSymbol;
     }
-    return NaN;
   }
+  if (string.length) {
+    return parseInt(newNumber, 10);
+  }
+  return NaN;
 }
 
 getNumber('2023 год');
+
+//Функция, которая возвращает исходную строку, дополненную указанными символами до заданной длины
+function getAddString (string, minLength, addString) {
+  if (string.length >= minLength) {
+    return string;
+  }
+  const difLength = minLength - string.length;
+  const addSymbol = addString.slice(0, difLength % addString.length) + addString.repeat(difLength / addString.length);
+  return addSymbol + string;
+}
+
+getAddString('1', 2, '0');
