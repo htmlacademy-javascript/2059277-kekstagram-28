@@ -56,6 +56,8 @@ const photoIdNumber = createRandomId(1, MAX_ID_NUMBER);
 
 const commentId = createRandomId(1, MAX_COMMENT_NUMBER);
 
+const commentNumber = createRandomId(0, COMMENT_COUNT);
+
 const likeNumber = createRandomId(MIN_LIKE_NUMBER, MAX_LIKE_NUMBER);
 
 const avatarNumber = createRandomId(1, AVATAR_COUNT);
@@ -72,7 +74,7 @@ const createPhoto = () => ({
   url: `photos/${photoIdNumber()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: likeNumber(),
-  comments: Array.from({length: createRandomId(1, COMMENT_COUNT)}, getComment),
+  comments: Array.from({length: commentNumber()}, getComment),
 });
 
 const getPhotos = Array.from({length: PHOTO_COUNT}, createPhoto);
