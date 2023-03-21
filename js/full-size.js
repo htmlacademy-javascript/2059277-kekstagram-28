@@ -1,4 +1,19 @@
 const bigPicture = document.querySelector('.big-picture');
+const socialCommentsList = document.querySelector('.social__comments');
+const socialComment = document.querySelector('.social__comment');
+
+const renderComments = (comments) => {
+  socialCommentsList.innerHTML = '';
+  comments.forEach(({avatar, message}) => {
+    const userComment = socialComment.cloneNode(true);
+    userComment.querySelector('.social__picture').src = avatar;
+    userComment.querySelector('.social__text').textContent = message;
+    socialCommentsList.append(userComment);
+  });
+};
+
+const commentsCounter = document.querySelector('.social__comment-count');
+const commentsLoader = document.querySelector('.social__comments-loader');
 
 const createBigPicture = ({url, description, likes, comments}) => {
   bigPicture.querySelector('.big-picture__img').querySelector('img').src = url;
@@ -8,9 +23,7 @@ const createBigPicture = ({url, description, likes, comments}) => {
 };
 
 const modalCloseElement = bigPicture.querySelector('.big-picture__cancel');
-const body = bigPicture.querySelector('body');
-const commentsCounter = bigPicture.querySelector('.social__comment-count');
-const commentsLoader = bigPicture.querySelector('.social__comments-loader');
+const body = document.querySelector('body');
 
 function closeUserModal () {
   bigPicture.classList.add('hidden');
@@ -33,6 +46,7 @@ const getFullSize = (data) => {
   commentsLoader.classList.add('hidden');
   document.addEventListener('keydown', onEscapeKeydown);
   createBigPicture(data);
+  renderComments(data.comments);
 };
 
 export {getFullSize};
