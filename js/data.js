@@ -1,4 +1,4 @@
-import {createRandomId, getRandomArrayElement} from './util.js';
+import {getRandomInteger, createRandomId, getRandomArrayElement} from './util.js';
 
 const DESCRIPTION = [
   'Никогда не отказывайся от своей мечты. Продолжай спать',
@@ -60,11 +60,10 @@ const commentNumber = createRandomId(0, COMMENT_COUNT);
 
 const likeNumber = createRandomId(MIN_LIKE_NUMBER, MAX_LIKE_NUMBER);
 
-const avatarNumber = createRandomId(1, AVATAR_COUNT);
 
 const getComment = () => ({
   id: commentId(),
-  avatar: `img/avatar-${avatarNumber()}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
