@@ -1,3 +1,4 @@
-import {renderGallery} from './gallery.js';
+import {getPhotos} from './data.js';
+import {renderThumbnails} from './thumbnail.js';
 
-renderGallery();
+renderThumbnails(getPhotos);
