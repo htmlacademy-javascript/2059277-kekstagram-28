@@ -1,15 +1,19 @@
+import {getFullSize} from './full-size.js';
+
 const templateThumbnail = document
   .querySelector('#picture')
   .content.querySelector('.picture');
 const pictureContainer = document.querySelector('.pictures');
 
-const createThumbnail = ({url, description, likes, comments, id}) => {
+const createThumbnail = (photo) => {
   const userThumbnail = templateThumbnail.cloneNode(true);
-  userThumbnail.querySelector('.picture__img').src = url;
-  userThumbnail.querySelector('.picture__img').alt = description;
-  userThumbnail.querySelector('.picture__likes').textContent = likes;
-  userThumbnail.querySelector('.picture__comments').textContent = comments.length;
-  userThumbnail.dataset.thumbnailId = id;
+  userThumbnail.querySelector('.picture__img').src = photo.url;
+  userThumbnail.querySelector('.picture__img').alt = photo.description;
+  userThumbnail.querySelector('.picture__likes').textContent = photo.likes;
+  userThumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
+  userThumbnail.dataset.thumbnailId = photo.id;
+
+  userThumbnail.addEventListener('click', () => getFullSize(photo));
 
   return userThumbnail;
 };

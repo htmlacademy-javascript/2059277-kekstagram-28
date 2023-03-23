@@ -7,9 +7,9 @@ const pictureContainer = document.querySelector('.pictures');
 const renderGallery = () => {
   pictureContainer.addEventListener('click', (evt) => {
     const userThumbnail = evt.target.closest('.picture');
-    if (!userThumbnail) {
-      return;
-    }
+    // if (!userThumbnail) {
+    //   return;
+    // }
 
     const picture = getPhotos.find(
       (item) => item.id === Number(userThumbnail.dataset.thumbnailId)
