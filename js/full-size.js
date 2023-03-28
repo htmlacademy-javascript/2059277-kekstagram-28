@@ -1,15 +1,9 @@
 import {getComments} from './render-comments.js';
+import {onEscapeKeydown} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const modalCloseElement = bigPicture.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
-
-const onEscapeKeydown = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    closeUserModal();
-  }
-};
 
 const createBigPicture = ({url, description, likes}) => {
   bigPicture.querySelector('.big-picture__img').querySelector('img').src = url;
@@ -23,7 +17,10 @@ function closeUserModal () {
 }
 
 modalCloseElement.addEventListener('click', () => closeUserModal());
-document.addEventListener('keydown', onEscapeKeydown);
+
+document.addEventListener('keydown', (evt) => {
+  onEscapeKeydown(evt, closeUserModal);
+});
 
 const getFullSize = (data) => {
   bigPicture.classList.remove('hidden');

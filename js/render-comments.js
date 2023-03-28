@@ -1,9 +1,10 @@
 const NUMBER_COMMENTS_SHOWN = 5;
 
-const socialCommentsList = document.querySelector('.social__comments');
-const socialComment = document.querySelector('.social__comment');
-const commentsCounter = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.social__comments-loader');
+const bigPicture = document.querySelector('.big-picture');
+const socialCommentsList = bigPicture.querySelector('.social__comments');
+const socialComment = bigPicture.querySelector('.social__comment');
+const commentsCounter = bigPicture.querySelector('.social__comment-count');
+const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 
 let commentsShown = 0;
 let totalComments = [];
