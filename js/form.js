@@ -1,0 +1,100 @@
+import {isEscapeKey} from './util.js';
+
+const MAX_NUMBER_HASHTAGS = 5;
+const MAX_COMMENT_SYMBOLS = 140;
+const ERROR_MESSAGE = 'Поле заполнено некорректно';
+const ERROR_COMMENT_MAX = 'Максимальная длина комментария - 140 символов';
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
+const form = document.querySelector('.img-upload__form');
+const uploadFile = document.querySelector('#upload-file');
+const editForm = document.querySelector('.img-upload__overlay');
+const closeEditButton = document.querySelector('.img-upload__cancel');
+const hashtagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
+const body = document.querySelector('body');
+
+
+const pristine = new Pristine(form, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent:'img-upload__field-wrapper',
+  errorTextClass:'img-upload__field-wrapper--error',
+});
+
+
+const isValidHashtag = (tag) => VALID_SYMBOLS.test(tag);
+
+const isValidNumber = (tags) => (tags.length <= MAX_NUMBER_HASHTAGS);
+
+const hasUniqueHashtag = (tags) => {
+  const lowerCaseHashtag = tags.map((tag) => tag.toLowerCase());
+  return lowerCaseHashtag.length === new Set(lowerCaseHashtag).size;
+};
+
+const validateHashtags = (value) => {
+  const tags = value
+    .trim()
+    .split(' ')
+    .filter((tag) => tag.trim().length);
+  return isValidNumber(tags) && hasUniqueHashtag(tags) && tags.every(isValidHashtag);
+};
+
+pristine.addValidator(
+  hashtagField,
+  validateHashtags,
+  ERROR_MESSAGE
+);
+
+const validateComments = (value) => value.length <= MAX_COMMENT_SYMBOLS;
+
+pristine.addValidator(
+  commentField,
+  validateComments,
+  ERROR_COMMENT_MAX
+);
+
+
+const openEditForm = () => {
+  editForm.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentKeydown);
+};
+
+const closeEditForm = () => {
+  form.reset();
+  pristine.reset();
+  editForm.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+const isFieldFocused = () =>
+  document.activeElement === hashtagField ||
+  document.activeElement === commentField;
+
+function onDocumentKeydown (evt) {
+  if (isEscapeKey(evt) && !isFieldFocused()) {
+    evt.preventDefault();
+    closeEditForm();
+  }
+}
+
+closeEditButton.addEventListener('click', closeEditForm);
+
+uploadFile.addEventListener('change', () => openEditForm ());
+
+
+const submitForm = (evt) => {
+  if (pristine.validate()) {
+    form.submit();
+  }
+  evt.preventDefault();
+};
+
+form.addEventListener('submit', submitForm);
+
+const getUploadFile = () => {
+  uploadFile.addEventListener('change', openEditForm);
+};
+
+export {getUploadFile};
