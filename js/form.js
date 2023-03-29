@@ -83,18 +83,13 @@ closeEditButton.addEventListener('click', closeEditForm);
 
 uploadFile.addEventListener('change', () => openEditForm ());
 
-
-const submitForm = (evt) => {
-  if (pristine.validate()) {
-    form.submit();
-  }
-  evt.preventDefault();
+const onFormSubmit = () => {
+  form.addEventListener('submit', (evt) => {
+    if (pristine.validate()) {
+      form.submit();
+    }
+    evt.preventDefault();
+  });
 };
 
-form.addEventListener('submit', submitForm);
-
-const getUploadFile = () => {
-  uploadFile.addEventListener('change', openEditForm);
-};
-
-export {getUploadFile};
+export {onFormSubmit};
