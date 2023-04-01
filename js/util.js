@@ -33,4 +33,6 @@ const onEscapeKeydown = (evt, onClose) => {
   }
 };
 
-export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown};
+const body = document.querySelector('body');
+
+export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, body};

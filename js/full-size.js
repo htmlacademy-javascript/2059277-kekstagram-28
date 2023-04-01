@@ -1,9 +1,8 @@
 import {getComments} from './render-comments.js';
-import {onEscapeKeydown} from './util.js';
+import {onEscapeKeydown, body} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const modalCloseElement = bigPicture.querySelector('.big-picture__cancel');
-const body = document.querySelector('body');
 
 const createBigPicture = ({url, description, likes}) => {
   bigPicture.querySelector('.big-picture__img').querySelector('img').src = url;

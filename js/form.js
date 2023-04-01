@@ -1,24 +1,18 @@
-import {isEscapeKey} from './util.js';
-
-const MAX_NUMBER_HASHTAGS = 5;
-const MAX_COMMENT_SYMBOLS = 140;
-const ERROR_MESSAGE = 'Поле заполнено некорректно';
-const ERROR_COMMENT_MAX = 'Максимальная длина комментария - 140 символов';
-const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+import {isEscapeKey, body} from './util.js';
+import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './data.js';
 
 const form = document.querySelector('.img-upload__form');
-const uploadFile = document.querySelector('#upload-file');
-const editForm = document.querySelector('.img-upload__overlay');
-const closeEditButton = document.querySelector('.img-upload__cancel');
-const hashtagField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
-const body = document.querySelector('body');
+const uploadFile = form.querySelector('#upload-file');
+const editForm = form.querySelector('.img-upload__overlay');
+const closeEditButton = form.querySelector('.img-upload__cancel');
+const hashtagField = form.querySelector('.text__hashtags');
+const commentField = form.querySelector('.text__description');
 
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
-  errorTextParent:'img-upload__field-wrapper',
-  errorTextClass:'img-upload__field-wrapper--error',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error',
 });
 
 
@@ -68,12 +62,8 @@ const closeEditForm = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-const isFieldFocused = () =>
-  document.activeElement === hashtagField ||
-  document.activeElement === commentField;
-
 function onDocumentKeydown (evt) {
-  if (isEscapeKey(evt) && !isFieldFocused()) {
+  if (isEscapeKey(evt) && !(document.activeElement === hashtagField || document.activeElement === commentField)) {
     evt.preventDefault();
     closeEditForm();
   }
