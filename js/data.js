@@ -1,5 +1,15 @@
 import {getRandomInteger, createRandomId, getRandomArrayElement} from './util.js';
 
+const MAX_NUMBER_HASHTAGS = 5;
+
+const MAX_COMMENT_SYMBOLS = 140;
+
+const ERROR_MESSAGE = 'Поле заполнено некорректно';
+
+const ERROR_COMMENT_MAX = 'Максимальная длина комментария - 140 символов';
+
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const DESCRIPTION = [
   'Никогда не отказывайся от своей мечты. Продолжай спать',
   'Умный человек решает проблемы, а мудрый в них старается не попадать',
@@ -78,4 +88,4 @@ const createPhoto = () => ({
 
 const getPhotos = Array.from({length: PHOTO_COUNT}, createPhoto);
 
-export {getPhotos};
+export {getPhotos, MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS};
