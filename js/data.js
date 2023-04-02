@@ -1,5 +1,8 @@
 import {getRandomInteger, createRandomId, getRandomArrayElement} from './util.js';
 
+const NUMBER_COMMENTS_SHOWN = 5;
+
+
 const MAX_NUMBER_HASHTAGS = 5;
 
 const MAX_COMMENT_SYMBOLS = 140;
@@ -9,6 +12,67 @@ const ERROR_MESSAGE = 'Поле заполнено некорректно';
 const ERROR_COMMENT_MAX = 'Максимальная длина комментария - 140 символов';
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
+
+const SCALE_STEP = 25;
+
+const SCALE_MIN = 25;
+
+const SCALE_MAX = 100;
+
+const SCALE_DEFOULT = 100;
+
+const EFFECTS = [
+  {
+    name: 'none',
+    style: 'none',
+    min:0,
+    max:0,
+    step:0,
+    unit:'',
+  },
+  {
+    name: 'chrome',
+    style: 'grayscale',
+    min:0,
+    max:1,
+    step:0.1,
+    unit:'',
+  },
+  {
+    name: 'sepia',
+    style: 'sepia',
+    min:0,
+    max:1,
+    step:0.1,
+    unit:'',
+  },
+  {
+    name: 'marvin',
+    style: 'invert',
+    min:0,
+    max:100,
+    step:1,
+    unit:'%',
+  },
+  {
+    name: 'phobos',
+    style: 'blur',
+    min:0,
+    max:3,
+    step:0.1,
+    unit:'px',
+  },
+  {
+    name: 'heat',
+    style: 'brightness',
+    min:1,
+    max:3,
+    step:0.1,
+    unit:'',
+  },
+];
+
 
 const DESCRIPTION = [
   'Никогда не отказывайся от своей мечты. Продолжай спать',
@@ -88,4 +152,4 @@ const createPhoto = () => ({
 
 const getPhotos = Array.from({length: PHOTO_COUNT}, createPhoto);
 
-export {getPhotos, MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS};
+export {getPhotos, MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS, NUMBER_COMMENTS_SHOWN, SCALE_STEP, SCALE_MIN, SCALE_MAX, SCALE_DEFOULT, EFFECTS};
