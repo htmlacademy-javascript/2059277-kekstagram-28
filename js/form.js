@@ -1,3 +1,5 @@
+import {resetScale} from './photo-scale.js';
+import {resetEffects} from './photo-effects.js';
 import {isEscapeKey, body} from './util.js';
 import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './data.js';
 
@@ -56,6 +58,8 @@ const openEditForm = () => {
 
 const closeEditForm = () => {
   form.reset();
+  resetScale();
+  resetEffects();
   pristine.reset();
   editForm.classList.add('hidden');
   body.classList.remove('modal-open');

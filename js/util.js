@@ -35,4 +35,6 @@ const onEscapeKeydown = (evt, onClose) => {
 
 const body = document.querySelector('body');
 
-export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, body};
+const previewImage = document.querySelector('.img-upload__preview img');
+
+export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, body, previewImage};
