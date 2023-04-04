@@ -1,6 +1,7 @@
 import {resetScale} from './photo-scale.js';
 import {resetEffects} from './photo-effects.js';
-import {isEscapeKey, body} from './util.js';
+import {isEscapeKey, body, showAlert} from './util.js';
+import {sendData} from './api.js';
 import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -9,7 +10,12 @@ const editForm = form.querySelector('.img-upload__overlay');
 const closeEditButton = form.querySelector('.img-upload__cancel');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
+const uploadSubmit = form.querySelector('#upload-submit');
 
+const submitText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -77,12 +83,28 @@ closeEditButton.addEventListener('click', closeEditForm);
 
 uploadFile.addEventListener('change', () => openEditForm ());
 
-const onFormSubmit = () => {
+const blockSubmit = () => {
+  uploadSubmit.disabled = true;
+  uploadSubmit.textContent = submitText.SENDING;
+};
+
+const unblockSubmit = () => {
+  uploadSubmit.disabled = false;
+  uploadSubmit.textContent = submitText.IDLE;
+};
+
+const onFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
-    if (pristine.validate()) {
-      form.submit();
-    }
     evt.preventDefault();
+    if (pristine.validate()) {
+      blockSubmit();
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .catch((err) => {
+          showAlert(err.message);
+        })
+        .finally(unblockSubmit);
+    }
   });
 };
 
