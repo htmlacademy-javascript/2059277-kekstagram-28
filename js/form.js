@@ -1,7 +1,7 @@
 import {resetScale} from './photo-scale.js';
 import {resetEffects} from './photo-effects.js';
 import {isEscapeKey, body} from './util.js';
-import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './data.js';
+import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
 const uploadFile = form.querySelector('#upload-file');

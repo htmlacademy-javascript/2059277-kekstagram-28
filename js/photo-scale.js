@@ -1,5 +1,5 @@
 import {previewImage} from './util.js';
-import {SCALE_STEP, SCALE_MIN, SCALE_MAX, SCALE_DEFOULT} from './data.js';
+import {SCALE_STEP, SCALE_MIN, SCALE_MAX, SCALE_DEFOULT} from './constants.js';
 
 const scaleImage = document.querySelector('.img-upload__scale');
 const controlValue = scaleImage.querySelector('.scale__control--value');
