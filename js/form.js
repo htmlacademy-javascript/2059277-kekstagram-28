@@ -1,7 +1,8 @@
 import {resetScale} from './photo-scale.js';
 import {resetEffects} from './photo-effects.js';
-import {isEscapeKey, body, showAlert} from './util.js';
+import {isEscapeKey, body} from './util.js';
 import {sendData} from './api.js';
+import {getSuccessMessage, getErrorMessage} from './loading-message.js';
 import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -100,12 +101,13 @@ const onFormSubmit = (onSuccess) => {
       blockSubmit();
       sendData(new FormData(evt.target))
         .then(onSuccess)
+        .then(getSuccessMessage)
         .catch((err) => {
-          showAlert(err.message);
+          getErrorMessage(err);
         })
         .finally(unblockSubmit);
     }
   });
 };
 
-export {onFormSubmit};
+export {onFormSubmit, closeEditForm};
