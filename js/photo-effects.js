@@ -1,5 +1,5 @@
 import {previewImage} from './util.js';
-import {EFFECTS} from './data.js';
+import {EFFECTS} from './constants.js';
 
 const EFFECT_DEFAULT = EFFECTS[0];
 let currentEffect = EFFECT_DEFAULT;

@@ -1,4 +1,4 @@
-import {NUMBER_COMMENTS_SHOWN} from './data.js';
+import {NUMBER_COMMENTS_SHOWN} from './constants.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const socialCommentsList = bigPicture.querySelector('.social__comments');

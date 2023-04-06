@@ -1,3 +1,5 @@
+import {ALERT_SHOW_TIME} from './constants.js';
+
 function getRandomInteger (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
@@ -33,8 +35,20 @@ const onEscapeKeydown = (evt, onClose) => {
   }
 };
 
+const showAlert = (message) => {
+  const alert = document.createElement('div');
+  alert.classList.add('show-alert');
+  alert.textContent = message;
+  document.body.append(alert);
+
+  setTimeout(() => {
+    alert.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+
 const body = document.querySelector('body');
 
 const previewImage = document.querySelector('.img-upload__preview img');
 
-export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, body, previewImage};
+export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, showAlert, body, previewImage};
