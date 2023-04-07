@@ -51,4 +51,13 @@ const body = document.querySelector('body');
 
 const previewImage = document.querySelector('.img-upload__preview img');
 
-export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, showAlert, body, previewImage};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+
+export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, showAlert, debounce, body, previewImage};
