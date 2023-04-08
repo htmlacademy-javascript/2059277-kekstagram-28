@@ -3,6 +3,11 @@ export const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
 export const ALERT_SHOW_TIME = 5000;
 
 
+export const DISPLAY_PHOTO_COUNT = 10;
+
+export const NUMBER_SORT = 0.5;
+
+
 export const NUMBER_COMMENTS_SHOWN = 5;
 
 
