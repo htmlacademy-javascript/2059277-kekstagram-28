@@ -51,6 +51,8 @@ const body = document.querySelector('body');
 
 const previewImage = document.querySelector('.img-upload__preview img');
 
+const uploadFile = document.querySelector('#upload-file');
+
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
   return (...rest) => {
@@ -60,4 +62,4 @@ const debounce = (callback, timeoutDelay) => {
 };
 
 
-export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, showAlert, debounce, body, previewImage};
+export {getRandomInteger, createRandomId, getRandomArrayElement, isEscapeKey, onEscapeKeydown, showAlert, debounce, body, previewImage, uploadFile};

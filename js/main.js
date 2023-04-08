@@ -4,6 +4,7 @@ import {getData} from './api.js';
 import {showAlert, debounce} from './util.js';
 import {closeEditForm} from './form.js';
 import {getFilteredPhoto, init} from './photo-filtering.js';
+import {getUserPhoto} from './user-photo.js';
 
 
 getData()
@@ -18,3 +19,5 @@ getData()
   );
 
 onFormSubmit(closeEditForm);
+
+getUserPhoto();

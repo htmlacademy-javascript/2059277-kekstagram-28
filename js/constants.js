@@ -1,5 +1,7 @@
 export const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
 
+export const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 export const ALERT_SHOW_TIME = 5000;
 
 

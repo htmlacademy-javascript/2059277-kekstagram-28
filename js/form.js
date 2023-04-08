@@ -1,12 +1,11 @@
 import {resetScale} from './photo-scale.js';
 import {resetEffects} from './photo-effects.js';
-import {isEscapeKey, body} from './util.js';
+import {isEscapeKey, body, uploadFile} from './util.js';
 import {sendData} from './api.js';
 import {getSuccessMessage, getErrorMessage} from './loading-message.js';
 import {MAX_NUMBER_HASHTAGS, MAX_COMMENT_SYMBOLS, ERROR_MESSAGE, ERROR_COMMENT_MAX, VALID_SYMBOLS} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
-const uploadFile = form.querySelector('#upload-file');
 const editForm = form.querySelector('.img-upload__overlay');
 const closeEditButton = form.querySelector('.img-upload__cancel');
 const hashtagField = form.querySelector('.text__hashtags');
