@@ -31,10 +31,12 @@ const getFilteredPhoto = () => {
 
 const onFilterClick = (callback) => {
   filtersForm.addEventListener('click', (evt) => {
-    filtersButton.forEach((item) => item.classList.remove('img-filters__button--active'));
-    evt.target.classList.add('img-filters__button--active');
-    currentFilter = evt.target.id;
-    callback(getFilteredPhoto());
+    if (evt.target.matches('.img-filters__button')) {
+      filtersButton.forEach((item) => item.classList.remove('img-filters__button--active'));
+      evt.target.classList.add('img-filters__button--active');
+      currentFilter = evt.target.id;
+      callback(getFilteredPhoto());
+    }
   });
 };
 
