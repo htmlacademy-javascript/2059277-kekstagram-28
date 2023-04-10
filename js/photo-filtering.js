@@ -11,7 +11,7 @@ const filtersButton = filtersForm.querySelectorAll('.img-filters__button');
 
 const imageFilter = document.querySelector('.img-filters');
 let currentFilter = Filter.DEFAULT;
-let sortedPhoto = [];
+let sortedPhotos = [];
 
 const randomSort = () => Math.random() - NUMBER_SORT;
 
@@ -21,11 +21,11 @@ const commentsSort = (pictureA, pictureB) =>
 const getFilteredPhoto = () => {
   switch (currentFilter) {
     case Filter.RANDOM:
-      return [...sortedPhoto].sort(randomSort).slice(0, DISPLAY_PHOTO_COUNT);
+      return [...sortedPhotos].sort(randomSort).slice(0, DISPLAY_PHOTO_COUNT);
     case Filter.DISCUSSED:
-      return [...sortedPhoto].sort(commentsSort);
+      return [...sortedPhotos].sort(commentsSort);
     default:
-      return [...sortedPhoto];
+      return [...sortedPhotos];
   }
 };
 
@@ -40,7 +40,7 @@ const onFilterClick = (callback) => {
 
 const init = (loadedPictures, callback) => {
   imageFilter.classList.remove('img-filters--inactive');
-  sortedPhoto = [...loadedPictures];
+  sortedPhotos = [...loadedPictures];
   onFilterClick(callback);
 };
 
