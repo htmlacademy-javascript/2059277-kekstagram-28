@@ -1,3 +1,4 @@
+import {DELAY_TIME} from './constants.js';
 import {renderThumbnails} from './thumbnail.js';
 import {onFormSubmit} from './form.js';
 import {getData} from './api.js';
@@ -9,7 +10,7 @@ import {getUserPhoto} from './user-photo.js';
 
 getData()
   .then((data) => {
-    const debouncedRenderThumbnails = debounce(renderThumbnails);
+    const debouncedRenderThumbnails = debounce(renderThumbnails, DELAY_TIME);
     init(data, debouncedRenderThumbnails);
     renderThumbnails(getFilteredPhoto());
   }).catch(
